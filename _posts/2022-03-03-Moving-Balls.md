@@ -61,42 +61,29 @@ At the core, the "object" to be moved around a screen will be a point
 {% highlight javascript linenos %}
 
 class PhysicsBody {
-
   constructor(x, y, a, m = 1) {
- 
     this.pos = new Vec2(x,y);
     this.angle = a;
-    
     this.velocity = new Vec2();
     this.angularVelocity = 0;
-
     this.mass = m === 0 ? 0 : m;
-    this.invMass = this.mass === 0 ? 0 : 1/this.mass;
-    
+    this.invMass = this.mass === 0 ? 0 : 1/this.mass; // property to hold the inverse of the mass as it is often used
     this.force = new Vec2();
-
     this.shape;
-
   }
   
   addShape(shape) {
-
     this.shape = shape;
-
   }
 
   integrateForces(gravity, dt) {
-
     this.force.copy(gravity);
     this.velocity.addScale(this.force, dt);
-     
   }
 
   integrateVelocities(dt) {
-
     this.pos.addScale(this.velocity, dt);
     this.angle += this.angularVelocity * dt;
-    
   }
   
 }
@@ -108,14 +95,11 @@ A point has no "size". We want shapes to move around the screen. So we will star
 {% highlight javascript linenos %}
 
 class Circle {
-
+    // only paramter to the constructor is the radius of the circle
     constructor(r) {
-
         this.type = "Circle";
         this.radius = r;
-     
     }
-
 }
 
 {% endhighlight %}
