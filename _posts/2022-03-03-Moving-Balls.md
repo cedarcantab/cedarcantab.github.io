@@ -58,7 +58,7 @@ Let's get coding!
 
 At the core, the "object" to be moved around a screen will be a point
 
-{% highlight javascript linenos %}
+{% highlight linenos %}
 
 class PhysicsBody {
 
