@@ -7,7 +7,7 @@ tags: [Physics, Tutorial]
 
 Having covered the fundamental laws of physics necessary (at least for linear motion) and vector maths, it is time to make a start. But we will start, very very slowly..by making balls move around the screen.
 
-##Relationship Between Position, Velocity and Acceleration
+## Relationship Between Position, Velocity and Acceleration
 
 The first step to moving objects around the screen is to review the relationship between Acceleration (a), Velocity (v), and Position (p). Specifically:
 
@@ -19,18 +19,18 @@ According to the above, if we know the object’s position right now (p1) and 1 
 
 Similarly, acceleration (a) = change in velocity (dv) / change in time (dt).
 
-##Euler Integration
+## Euler Integration
 
 For the purposes of building a physics engine, what this means is that we can work backwards, ie if we know an object’s acceleration, we can figure out how much the velocity is supposed to change every second. And if we know the velocity, we can figure out how much the position is supposed to change every second. This is the opposite of "derivative" and is called “integration”, which you may remember from calculus lessons at school.
 
 
 In terms of psuedo-code, this translates to:
 
-....
+```
 acceleration = force / mass
 change in position = velocity * dt
 change in velocity = acceleration * dt
-....
+```
 
 where dt is the time elapsed since the last calculation.
 
@@ -39,16 +39,16 @@ In the theoretical world, t is continuous and dt is very very very short. In the
 
 There is in fact another (very similar but different) technique technique called semi-implicit Euler (or Symplectic Euler Integration), which gives better results even when acceleration is changing over dt. Switching from explicit to semi-implicit Euler is as follows:
 
-....
+```
 position += velocity * dt;
 velocity += acceleration * dt;
-....
+```
 
 to:
-....
+```
 velocity += acceleration * dt;
 position += velocity * dt;
-....
+```
 
 There are other integration methods such as Verlet integration and Runge-Kutta integration.
 
@@ -58,7 +58,7 @@ Let's get coding!
 
 At the core, the "object" to be moved around a screen will be a point
 
-....javascript
+```javascript
 class PhysicsBody {
 
   constructor(x, y, a, m = 1) {
@@ -99,10 +99,11 @@ class PhysicsBody {
   }
   
 }
-....
+```
 
 A point has no "size". We want shapes to move around the screen. So we will start with a circle (best entry point for experimenting with physics simulations) which will be attached to the point.
-....javascript
+
+```javascript
 class Circle {
 
     constructor(r) {
@@ -113,19 +114,19 @@ class Circle {
     }
 
 }
-....
+```
 
-###integrateForces() method
+### integrateForces() method
 
 This method is the first part of moving the ball by numerical integration. It is integrating acceleration to get to velocity (in the example we are simply taking gravity as the only force acting on the body).
 
-####Inverse Mass
+#### Inverse Mass
 
 You will notice that I am calculating the inverse of the mass within the constructor function. For the moment, mass is assumed to be 1 so this does not matter, but in future posts I will attempt to take into account the masses of objects in calculating their behaviours, and there will be a lot of "dividing by mass" in physics equations.
 
 I understand division is computationally more expensive than multiplication and dividing by mass will occur a lot in physics simulations. As mass does not change, it therefore makes sense to calculate inverse mass once, and multiply by that, as opposed to divide by mass, whenever necessary.
 
-##CodePen
+## CodePen
 
 As this post is getting quite long, here is a demo which has one circle bouncing up and down. In the next post we will have lots of circles bouncing around the screen.
 
