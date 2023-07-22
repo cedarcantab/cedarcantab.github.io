@@ -58,7 +58,7 @@ Let's get coding!
 
 At the core, the "object" to be moved around a screen will be a point
 
-{% highlight javascript %}
+{% highlight javascript linenos %}
 
 class PhysicsBody {
 
@@ -106,6 +106,7 @@ class PhysicsBody {
 A point has no "size". We want shapes to move around the screen. So we will start with a circle (best entry point for experimenting with physics simulations) which will be attached to the point.
 
 {% highlight javascript linenos %}
+
 class Circle {
 
     constructor(r) {
@@ -116,6 +117,7 @@ class Circle {
     }
 
 }
+
 {% endhighlight %}
 
 ### integrateForces() method
