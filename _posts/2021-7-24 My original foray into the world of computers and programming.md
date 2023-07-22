@@ -1,3 +1,7 @@
+---
+title: "My original foray into the world of computers and programming"
+layout: post
+---
 My dad bought me a personal computer called the ZX81 when it was first launched, when I was a teenager. I had no idea what a computer was but I was hooked from the beginning. This was black & white only computer with 1KB (!) of RAM.
 ![title](/assets/pix/20210724/zx81.png))
 Soon after, the BBC Micro  was launched and I begged my dad to buy a 'model-B' with its, at the time, whopping 32KB of user RAM. In those days, kids used to write programs themselves, as well as play purchased games. In those days, when you bought a computer, it would come loaded with a language called Basic, and you could start programming right away - it was real easy. Like a lot of other kids those days, I used to love writing games. However, Basic was an interpreted language and given the power of microprocessors in those days, anything requiring fancy sprite movements and lot of computation required you to delve into machine code and assembly language. However, studies soon became priority, and programming disappeared from my life.
