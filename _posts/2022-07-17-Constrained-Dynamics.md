@@ -89,17 +89,25 @@ where:
 ### Effective Mass Matrix
 
 The mass matrix, or often referred to as the K-matrix is a diagonal matrix whose elements are the masses and inertias of the bodies.
-$$ \begin{bmatrix} m_1 &0  &0  &0  \\ 0 & I_1 & 0 & 0 \\ 0 & 0 &m_2  &0  \\ 0 & 0 & 0 & I_2 \end{bmatrix} $$
+
+$$ \begin{bmatrix} I_{2\times 2}m_1 &0  &0  &0  \\ 0 & I_1 & 0 & 0 \\ 0 & 0 & I_{2\times 2}m_2  &0  \\ 0 & 0 & 0 & I_2 \end{bmatrix} $$
 
 The inverse of the above matrix is often referred to as the effective mass.
 
 $$ \begin{bmatrix} m_1^{-1} &0  &0  &0  \\ 0 & I_1^{-1} & 0 & 0 \\ 0 & 0 &m_2^{-1}  &0  \\ 0 & 0 & 0 & I_2^{-1} \end{bmatrix} $$
+
 Remember that we are trying to find Δv such that:
+
 $$ \dot C:J(v+\Delta v)+b=0 $$
+
 Reinserting the Δv magic equation back into the velocity constraint function, we get
+
 $$ \dot C:J(v+M^{-1}J^T\lambda)+b=0 $$
+
 Rearranging we can arrive at a formula for lambda (a scalar) as follows:
+
 $$ \lambda = -\frac{Jv + b}{JM^{-1}J^T} $$
+
 Now we have he magnitude of the impulse.
 
 Recall that the impulse ats along the Jacobian and frmo that we can calculate the required change in velocity Δv.
@@ -107,10 +115,13 @@ Recall that the impulse ats along the Jacobian and frmo that we can calculate th
 ## Adjusting for position error
 
 Solving the velocity constraint equation given above is not always enough, however. The Δv  may resolve the velocity constraint. However, this will not always fix the position constraint, as we would have only eliminated the velocity break along the constraint axis. The bodies must be given a little bit of extra "oomph" along the constraint axis to satisfy not only the velocity constraint but also the position constraint. For that, we need to introduce what is referred to as bias velocity; an extra bit of impulse/velocity, if you will. The velocity constraint function then becomes:
+
 $$ \dot C: Jv+b=0 $$
+
 where b is the bias impulse, and this is based on the output from the position constraint function C(x).
 
 If we want this error to be reduced to zero in the next timestep ∆t, the velocity needed to correct for this error is C(s) ∆t. However, we do not want the error to be removed in a single timestep. Instead, the velocity needed to correct for the position in small steps for stability reasons. The bias term is usually expressed as following:
+
 $$ \(b=\frac{\beta}{h}C(x) $$
 
 where β is a value between 0 and 1 called the bias factor. The bias factor describes the amount of error that is corrected at each timestep.
@@ -118,12 +129,13 @@ where β is a value between 0 and 1 called the bias factor. The bias factor desc
 This type of error correction is called Baumgarte stabilization
 
 If you work through the same calculations as above, you will get the following expression for lambda.
+
 $$ \lambda = -\frac{Jv+b}{JM^{-1}J^T} $$
+
 With this adjusted alpha, you can calculate the impulse to get the collision response required.
 
 ## Preparing for the next post
 
 Sounds like smoke and mirrors? And why so complicated? We did not actually cover how to get J..
-
 
 But assuming we can...the above allows us to encode different types of constraints as a set of matrix applications in a generic form. As long as we can come up with the constraint position function, and from there, come up with the Jacobian, solve for and scale the result by the correct mass matrix, we can solve the constraint.
