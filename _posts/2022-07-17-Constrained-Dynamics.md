@@ -5,10 +5,6 @@ layout: post
 categories: [Physics, Tutorial]
 ---
 
-
-$$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $$
-
-
 In this post I start to look into the deep world of Constraints and Constraint Solvers. You will appreciate why I say deep, if you do a google search for constrained dynamics or constraint solvers. You will most likely be inundated with papers with lots of maths involving very large matrices. I have had to sift through a lot of papers before getting even a basic understanding. In my experience, rather than dive straight into the maths (which lot of papers tend to do), it helps to gain an intuitive understanding of what constrained dynamics is all about, then get into the maths. 
 
 In particular, I will document my exploration into the formulation of constraint equations / functions and solving such constraint equations.
@@ -56,7 +52,6 @@ Another way of solving constraints is come up with a constraint function that ta
 ### Position constraint function
 
 In order to come up with the necessary impulse, the first thing we must do is to come up with the position constraint function. For the moment, we will keep this discussion generic, and say that the position constraint function is expressed as follows.
-$$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $$
 $$ C(x) = 0 $$
 where x is the positional properties of the bodies (i.e. the position and rotation of the pair of bodies).
 
@@ -68,11 +63,11 @@ The direct manipulation of position to satisfy a constraint. However, we are try
 
 Again, for the moment we will keep things very generic and say that we want to express the velocity constraint as follows, where J is a matrix called the Jacobian matrix and v is the relative velocity of the objects expressed as a vector (we gradually explain why).
 
-[XXX]
+$$ \dot C = \frac{dC}{dt}=J\cdot v =0 $$
 
 This constraint function is NOT satisfied if it does NOT equal zero. We are trying to find Δv (or the impulse to change the velocity by Δv) so that the velocity constraint function does equal zero, ie:
 
-[XXXX]
+$$ \dot C = J(v+\Delta v)=0 $$
 
 Note that derivative of C will always be some linear function, i.e. the above derivative of C can be expressing the manipulation of the relative velocity in terms of matrix maths. This is the first step to understanding the world of constraint function and constraint solvers using matrix maths!
 
@@ -84,77 +79,43 @@ That is all very well and interesting but how do we actually calculate the impul
 
 The velocity constraint function was expressed as the relative velocity multiplied by the Jacobian matrix, and that the whole point of this framework is to express velocity constraint as a linear function of velocities. You can then intuitively understand that the Jacobian is the "axis" along which the impulse will be applied - for that reason, the Jacobian is sometimes referred to as expressing the "constraint axis". Following on from this, we can say that the impulse is some multiple of the Jacobian, and therefore, the velocity delta is the impulse multiplied by the inverse mass. Again, leaving aside the detail for now, take it for granted that Δv is expressed as below.
 
-[XXX]
+$$ \Delta v=M^{-1}J^T\lambda $$
 
 where:
 
 J is a matrix referred to as the Jacobian, and
-XXXXXXX
+$$ \begin{bmatrix} m_1 &0  &0  &0  \\ 0 & I_1 & 0 & 0 \\ 0 & 0 &m_2  &0  \\ 0 & 0 & 0 & I_2 \end{bmatrix} $$
 * M is the mass matrix, expressed as below:
 * and the inverse of the mass Matrix is:
-XXXX
+$$ \begin{bmatrix} m_1^{-1} &0  &0  &0  \\ 0 & I_1^{-1} & 0 & 0 \\ 0 & 0 &m_2^{-1}  &0  \\ 0 & 0 & 0 & I_2^{-1} \end{bmatrix} $$
+Remember that we are trying to find Δv such that:
+$$ \dot C:J(v+\Delta v)+b=0 $$
 Reinserting the Δv magic equation back into the velocity constraint function, we get
-XXX
-
+$$ \dot C:J(v+M^{-1}J^T\lambda)+b=0 $$
 Rearranging we can arrive at a formula for lambda (a scalar) as follows:
-XXX
+$$ \lambda = -\frac{Jv + b}{JM^{-1}J^T} $$
+Now we have he magnitude of the impulse.
 
-Recall (again) that when the velocity constraint is satisfied:
-XXX
-ie, 
-XXXX
-
-
-or
-XXXX
-
-
-
-Note that this is a general form for solving a system of linear equations, Ax = b where:
-
-A = JM-tJT
-
-x = lambda
-
-b = -Jv
-
-We are trying to obtain the impulse along the collision normal, ie λ・n.
-
-Since we now have the velocity constraint expressed in the above form, there are numerous methods for solving such system of linear equations. The most direct method of which is the following matrix multiplication.
-
-
-
-
-Hence we could solve all the constraints simultaneously by expressing all the constraint equations in one giant matrix A However this is not the typical approach adopted in games physics engines. More typically individual constraints are solved one-by-one, sequentially. You can guess that this will have the effect of invalidating a constraint after on constraint is solved. However, we will discuss in further detail in a separate post.
-
-
-We have not covered where we get J from - we will cover this with an actual example in a subsequent post, but assuming we have J, we can calculate lambda.
-
-
-And once we have lambda, we can substitute this back into the following to calculate the post collision velocity.
+Recall that the impulse ats along the Jacobian and frmo that we can calculate the required change in velocity Δv.
 
 ## Adjusting for position error
 
 Solving the velocity constraint equation given above is not always enough, however. The Δv  may resolve the velocity constraint. However, this will not always fix the position constraint, as we would have only eliminated the velocity break along the constraint axis. The bodies must be given a little bit of extra "oomph" along the constraint axis to satisfy not only the velocity constraint but also the position constraint. For that, we need to introduce what is referred to as bias velocity; an extra bit of impulse/velocity, if you will. The velocity constraint function then becomes:
-XXXX
-
+$$ \dot C: Jv+b=0 $$
 where b is the bias impulse, and this is based on the output from the position constraint function C(x).
 
 If we want this error to be reduced to zero in the next timestep ∆t, the velocity needed to correct for this error is C(s) ∆t. However, we do not want the error to be removed in a single timestep. Instead, the velocity needed to correct for the position in small steps for stability reasons. The bias term is usually expressed as following:
-XXXX
+$$ \(b=\frac{\beta}{h}C(x) $$
 
 where β is a value between 0 and 1 called the bias factor. The bias factor describes the amount of error that is corrected at each timestep.
 
 This type of error correction is called Baumgarte stabilization
 
 If you work through the same calculations as above, you will get the following expression for lambda.
-XXXX
-
-
+$$ \lambda = -\frac{Jv+b}{JM^{-1}J^T} $$
 With this adjusted alpha, you can calculate the impulse to get the collision response required.
 
-
-Preparing for the next post
+## Preparing for the next post
 
 Sounds like smoke and mirrors? And why so complicated? We did not actually cover how to get J..
 
