@@ -83,10 +83,12 @@ $$ \Delta v=M^{-1}J^T\lambda $$
 
 where:
 
-J is a matrix referred to as the Jacobian, and
-$$ \begin{bmatrix} m_1 &0  &0  &0  \\ 0 & I_1 & 0 & 0 \\ 0 & 0 &m_2  &0  \\ 0 & 0 & 0 & I_2 \end{bmatrix} $$
+* J is a matrix referred to as the Jacobian, and
 * M is the mass matrix, expressed as below:
-* and the inverse of the mass Matrix is:
+
+$$ \begin{bmatrix} m_1 &0  &0  &0  \\ 0 & I_1 & 0 & 0 \\ 0 & 0 &m_2  &0  \\ 0 & 0 & 0 & I_2 \end{bmatrix} $$
+
+and the inverse of the mass Matrix is:
 $$ \begin{bmatrix} m_1^{-1} &0  &0  &0  \\ 0 & I_1^{-1} & 0 & 0 \\ 0 & 0 &m_2^{-1}  &0  \\ 0 & 0 & 0 & I_2^{-1} \end{bmatrix} $$
 Remember that we are trying to find Δv such that:
 $$ \dot C:J(v+\Delta v)+b=0 $$
