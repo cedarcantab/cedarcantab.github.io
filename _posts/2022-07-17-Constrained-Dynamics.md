@@ -16,7 +16,7 @@ In particular, I will document my exploration into the formulation of constraint
 
 Where you have rigid bodies moving around the screen with no restrictions of any kind, that is unconstrained dynamics. In constrained dynamics, a rigid body in 3 dimensional space has 6 degrees of freedom, as defined by the 3 components of translation (x, y, z) and 3 components of rotation. In 2 dimensions, a rigid body has 3 degrees of freedom, as defined by 2 components of translation (x, y) and rotation (θ) about an axis perpendicular to the xy plane.
 
-### COnstrained dynamics
+### Constrained dynamics
 
 In constrast, constrained dynamics is where you have some kind of restriction on the rigid bodies' degrees of freedom.
 
@@ -53,6 +53,7 @@ Another way of solving constraints is come up with a constraint function that ta
 ### Position constraint function
 
 In order to come up with the necessary impulse, the first thing we must do is to come up with the position constraint function. For the moment, we will keep this discussion generic, and say that the position constraint function is expressed as follows.
+$$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $$
 $$ C(x) = 0 $$
 where x is the positional properties of the bodies (i.e. the position and rotation of the pair of bodies).
 
@@ -86,8 +87,8 @@ where:
 
 J is a matrix referred to as the Jacobian, and
 XXXXXXX
-M is the mass matrix, expressed as below:
-and the inverse of the mass Matrix is:
+* M is the mass matrix, expressed as below:
+* and the inverse of the mass Matrix is:
 XXXX
 Reinserting the Δv magic equation back into the velocity constraint function, we get
 XXX
