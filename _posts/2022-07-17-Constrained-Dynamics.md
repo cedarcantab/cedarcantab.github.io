@@ -6,6 +6,12 @@ categories: []
 tags: [Physics, Tutorial]
 ---
 
+You can enable MathJax by setting `mathjax: true` on a page or globally in the `_config.yml`. Some examples:
+
+[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula) relates the  complex exponential function to the trigonometric functions.
+
+$$ e^{i\theta}=\cos(\theta)+i\sin(\theta) $$
+
 In this post I start to look into the deep world of Constraints and Constraint Solvers. You will appreciate why I say deep, if you do a google search for constrained dynamics or constraint solvers. You will most likely be inundated with papers with lots of maths involving very large matrices. I have had to sift through a lot of papers before getting even a basic understanding. In my experience, rather than dive straight into the maths (which lot of papers tend to do), it helps to gain an intuitive understanding of what constrained dynamics is all about, then get into the maths. 
 
 In particular, I will document my exploration into the formulation of constraint equations / functions and solving such constraint equations.
