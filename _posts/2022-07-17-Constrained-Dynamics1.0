@@ -1,6 +1,7 @@
 ---
-layout: post
 title:  "Constrained Dynamics in Javascript: Introduction"
+mathjax: true
+layout: post
 categories: []
 tags: [Physics, Tutorial]
 ---
