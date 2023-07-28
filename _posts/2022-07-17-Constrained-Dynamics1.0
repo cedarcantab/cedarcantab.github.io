@@ -13,6 +13,7 @@ In particular, I will document my exploration into the formulation of constraint
 ## What is constrained dynamics?
 
 ### Unconstrained dynamics
+
 Where you have rigid bodies moving around the screen with no restrictions of any kind, that is unconstrained dynamics. In constrained dynamics, a rigid body in 3 dimensional space has 6 degrees of freedom, as defined by the 3 components of translation (x, y, z) and 3 components of rotation. In 2 dimensions, a rigid body has 3 degrees of freedom, as defined by 2 components of translation (x, y) and rotation (θ) about an axis perpendicular to the xy plane.
 
 ### COnstrained dynamics
@@ -36,8 +37,8 @@ pushing the y componentn of the position back to zero
 resetting the y-component of the velocity to zero, or the ball is to bounce, set the y-component to restitution coefficient * pre-collision y-component.
 
 What I am about to describe is a generic framework for:
-expressing a constraint as a constraint equation,
-solving the constraint equation, in order resolve the constraint
+1. expressing a constraint as a constraint equation,
+2. solving the constraint equation, in order resolve the constraint
 
 ### Constraint function
 
