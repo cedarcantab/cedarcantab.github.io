@@ -130,7 +130,7 @@ This type of error correction is called Baumgarte stabilization
 
 If you work through the same calculations as above, you will get the following expression for lambda.
 
-$$ \lambda = -\frac{Jv+b}{JM^{-1}J^{T} $$
+$$ \lambda = -\frac{Jv+b}{JM^{-1}J^{T}} $$
 
 With this adjusted alpha, you can calculate the impulse to get the collision response required.
 
