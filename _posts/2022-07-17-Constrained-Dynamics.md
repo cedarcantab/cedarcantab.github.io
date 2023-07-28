@@ -90,11 +90,11 @@ where:
 
 The mass matrix, or often referred to as the K-matrix is a diagonal matrix whose elements are the masses and inertias of the bodies.
 
-$$ \begin{bmatrix} I_{2\times 2}m_1 &0  &0  &0  \\ 0 & I_1 & 0 & 0 \\ 0 & 0 & I_{2\times 2}m_2  &0  \\ 0 & 0 & 0 & I_2 \end{bmatrix} $$
+$$ K=\begin{bmatrix} I_{2\times 2}m_1 &0  &0  &0  \\ 0 & I_1 & 0 & 0 \\ 0 & 0 & I_{2\times 2}m_2  &0  \\ 0 & 0 & 0 & I_2 \end{bmatrix} $$
 
 The inverse of the above matrix is often referred to as the effective mass.
 
-$$ \begin{bmatrix} m_1^{-1} &0  &0  &0  \\ 0 & I_1^{-1} & 0 & 0 \\ 0 & 0 &m_2^{-1}  &0  \\ 0 & 0 & 0 & I_2^{-1} \end{bmatrix} $$
+$$ M^{-1}=\begin{bmatrix} m_1^{-1} &0  &0  &0  \\ 0 & I_1^{-1} & 0 & 0 \\ 0 & 0 &m_2^{-1}  &0  \\ 0 & 0 & 0 & I_2^{-1} \end{bmatrix} $$
 
 Remember that we are trying to find Δv such that:
 
@@ -130,7 +130,7 @@ This type of error correction is called Baumgarte stabilization
 
 If you work through the same calculations as above, you will get the following expression for lambda.
 
-$$ \lambda = -\frac{Jv+b}{JM^{-1}J^T} $$
+$ \lambda = -\frac{Jv+b}{JM^{-1}J^{T} $
 
 With this adjusted alpha, you can calculate the impulse to get the collision response required.
 
