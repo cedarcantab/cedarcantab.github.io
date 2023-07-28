@@ -122,7 +122,7 @@ where b is the bias impulse, and this is based on the output from the position c
 
 If we want this error to be reduced to zero in the next timestep ∆t, the velocity needed to correct for this error is C(s) ∆t. However, we do not want the error to be removed in a single timestep. Instead, the velocity needed to correct for the position in small steps for stability reasons. The bias term is usually expressed as following:
 
-$$ \(b=\frac{\beta}{h}C(x) $$
+$$ b=\frac{\beta}{h}C(x) $$
 
 where β is a value between 0 and 1 called the bias factor. The bias factor describes the amount of error that is corrected at each timestep.
 
