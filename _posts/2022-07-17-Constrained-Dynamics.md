@@ -2,7 +2,7 @@
 title:  "Constrained Dynamics in Javascript: Introduction"
 mathjax: true
 layout: post
-categories: media
+categories: [Physics, Tutorial]
 ---
 
 
