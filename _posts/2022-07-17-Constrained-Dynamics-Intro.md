@@ -2,7 +2,13 @@
 title:  "Constrained Dynamics in Javascript: Introduction"
 mathjax: true
 layout: post
-categories: [Physics, Tutorial]
+categories: 
+- Physics
+- Tutorial
+tags:
+- Constrained Dynamics
+- Javascript
+- Physics
 ---
 
 In this post I start to look into the deep world of Constraints and Constraint Solvers. You will appreciate why I say deep, if you do a google search for constrained dynamics or constraint solvers. You will most likely be inundated with papers with lots of maths involving very large matrices. I have had to sift through a lot of papers before getting even a basic understanding. In my experience, rather than dive straight into the maths (which lot of papers tend to do), it helps to gain an intuitive understanding of what constrained dynamics is all about, then get into the maths. 
@@ -52,7 +58,9 @@ Another way of solving constraints is come up with a constraint function that ta
 ### Position constraint function
 
 In order to come up with the necessary impulse, the first thing we must do is to come up with the position constraint function. For the moment, we will keep this discussion generic, and say that the position constraint function is expressed as follows.
-$$ C(x) = 0 $$
+$$
+C(x) = 0
+$$
 where x is the positional properties of the bodies (i.e. the position and rotation of the pair of bodies).
 
 If we now take the time derivative of the above, we arrive at the velocity constraint function.
